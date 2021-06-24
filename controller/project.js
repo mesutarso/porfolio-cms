@@ -1,4 +1,4 @@
-const { create, find, findOne, remove } = require("../services/project");
+const { create, find, findOne, remove, update } = require("../services/project");
 module.exports = {
   create({ body }, res) {
     create(body)
@@ -65,3 +65,19 @@ module.exports = {
       });
   }
 };
+update({ body, params:{id} }, res) {
+  update(body,id)
+    .then((result) => {
+      res.status(201).send({
+        state: true,
+        message: "le projet a été mis à jour avec succès",
+        data: result,
+      });
+    })
+    .catch((error) => {
+      res.status(500).send({
+        state: false,
+        message: `il y a eu une erreur lors de la modification du project : ${error} `,
+      });
+    });
+},

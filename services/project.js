@@ -60,4 +60,25 @@ module.exports = {
       });
     });
   }
+  update(data,id) {
+    return new Promise((resolve, reject) => {
+      pool.query(
+        `UPDATE projects SET name=?, description=?,url_image=?,client_name=?,url_repository,url_website=? WHERE id=?)`,
+        [
+          data.name,
+          data.description,
+          data.image,
+          data.client,
+          data.repository,
+          data.website,
+        ],
+        (error, result) => {
+          if (error) {
+            return reject(error);
+          }
+          return resolve(result);
+        }
+      );
+    });
+  }
 };
