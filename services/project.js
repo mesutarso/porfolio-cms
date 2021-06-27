@@ -59,11 +59,12 @@ module.exports = {
         return resolve(result);
       });
     });
-  }
-  update(data,id) {
+  },
+  updateOne(data,id) {
     return new Promise((resolve, reject) => {
+      let query = 
       pool.query(
-        `UPDATE projects SET name=?, description=?,url_image=?,client_name=?,url_repository,url_website=? WHERE id=?)`,
+        `UPDATE projects SET name=?, description=?,url_image=?,client_name=?,url_repository,url_website=? WHERE id=?`,
         [
           data.name,
           data.description,
@@ -71,6 +72,7 @@ module.exports = {
           data.client,
           data.repository,
           data.website,
+          id
         ],
         (error, result) => {
           if (error) {
