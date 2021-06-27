@@ -1,4 +1,4 @@
-const { create, find, findOne, remove, updateOne } = require("../services/project");
+const { create, find, findOne, remove, update } = require("../services/project");
 module.exports = {
   create({ body }, res) {
     create(body)
@@ -65,7 +65,7 @@ module.exports = {
       });
   },
   updateById({ body, params: { id } }, res){
-    updateOne(body, id)
+    update(body, id)
       .then((result) => {
         res.status(200).send({
           state: true,
