@@ -60,7 +60,7 @@ module.exports = {
       });
     });
   },
-  update({ data }, id) {
+  update(data , id) {
     return new Promise((resolve, reject) => {
       let query = 
       pool.query(
@@ -71,8 +71,7 @@ module.exports = {
           data.image,
           data.client,
           data.repository,
-          data.website,
-          id
+          data.website
         ],
         (error, result) => {
           if (error) {
